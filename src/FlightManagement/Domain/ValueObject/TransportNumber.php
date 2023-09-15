@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\FlightManagement\Domain;
+namespace App\FlightManagement\Domain\ValueObject;
 
 use App\Shared\Domain\ValueObject\StringValueObject;
 

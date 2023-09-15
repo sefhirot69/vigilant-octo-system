@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\FlightManagement\Domain;
+namespace App\FlightManagement\Domain\ValueObject;
 
 final readonly class CodeName
 {

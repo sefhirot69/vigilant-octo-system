@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\FlightManagement\Domain;
 
+use App\FlightManagement\Domain\ValueObject\CodeName;
+use App\FlightManagement\Domain\ValueObject\DateRange;
+use App\FlightManagement\Domain\ValueObject\TransportNumber;
 use DateTimeImmutable;
 
 final readonly class Segment
