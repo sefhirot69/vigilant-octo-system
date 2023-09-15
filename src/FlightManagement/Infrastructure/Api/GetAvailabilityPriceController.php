@@ -5,17 +5,27 @@ declare(strict_types=1);
 namespace App\FlightManagement\Infrastructure\Api;
 
 use App\Controller\Shared\BaseController;
+use GetAvailabilityPriceQuery;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 final class GetAvailabilityPriceController extends BaseController
 {
 
-    public function __invoke(): Response
+    public function __invoke(Request $request): Response
     {
+        //TODO refactor deserialize dto and validation
+        $originCode = $request->query->get('origin');
+        $destinationCode = $request->query->get('destination');
+        $start = $request->query->get('date');
 
-        $xmlContent = file_get_contents('/var/www/html/var/sopa.xml');
-
-        $xmlData = new \SimpleXMLElement($xmlContent);
+        $queryResult = $this->ask(
+            GetAvailabilityPriceQuery::create(
+                $originCode,
+                $destinationCode,
+                new \DateTimeImmutable($start)
+            )
+        );
 
         return new Response();
     }
