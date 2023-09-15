@@ -13,6 +13,10 @@ final class GetAvailabilityPriceController extends BaseController
     public function __invoke(): Response
     {
 
+        $xmlContent = file_get_contents('/var/www/html/var/sopa.xml');
+
+        $xmlData = new \SimpleXMLElement($xmlContent);
+
         return new Response();
     }
 

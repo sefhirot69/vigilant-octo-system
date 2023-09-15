@@ -6,13 +6,20 @@ namespace App\Shared\Domain\ValueObject;
 
 abstract class StringValueObject
 {
-    abstract public function __toString(): string;
-
-    abstract public function value(): string;
-
-    public function isEqualTo(self $other): bool
+    protected function __construct(
+        private readonly string $value
+    )
     {
-        return $this->value() === $other->value();
+    }
+
+    public function __toString(): string
+    {
+        return $this->value();
+    }
+
+    public function value(): string
+    {
+        return $this->value;
     }
 
     abstract public static function fromString(string $value): self;
