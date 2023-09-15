@@ -14,12 +14,12 @@ final readonly class CodeName
     }
     
     public static function create(
-        Code $code,
-        Name $name,
+        string  $code,
+        string  $name,
     ) : self {
         return new self(
-            $code,
-            $name
+            Code::fromString($code),
+            Name::fromString($name),
         );
     }
 

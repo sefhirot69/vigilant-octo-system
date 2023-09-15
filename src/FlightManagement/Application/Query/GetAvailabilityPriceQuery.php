@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+namespace App\FlightManagement\Application\Query;
+
 use App\Shared\Domain\Bus\Query\Query;
+use DateTimeImmutable;
 
 final class GetAvailabilityPriceQuery implements Query
 {
