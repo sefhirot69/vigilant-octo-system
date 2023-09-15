@@ -6,5 +6,4 @@ namespace App\FlightManagement\Infrastructure\Command;
 
 final class GetAvailabilityPriceCommand
 {
-
 }

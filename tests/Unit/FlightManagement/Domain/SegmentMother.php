@@ -13,13 +13,12 @@ use App\Tests\Unit\FlightManagement\Domain\ValueObject\TransportNumberMother;
 final class SegmentMother
 {
     public static function create(
-         CodeName        $originCodeName,
-         CodeName        $destinationCodeName,
-         DateRange       $dateRange,
-         TransportNumber $transportNumber,
-         CodeName        $companyCodeName,
-    ): Segment
-    {
+        CodeName $originCodeName,
+        CodeName $destinationCodeName,
+        DateRange $dateRange,
+        TransportNumber $transportNumber,
+        CodeName $companyCodeName,
+    ): Segment {
         return Segment::create(
             $originCodeName,
             $destinationCodeName,

@@ -16,7 +16,8 @@ final class DateRangeMother
     public static function random(): DateRange
     {
         $start = new \DateTimeImmutable();
-        $end = $start->add(new \DateInterval('PT2H'));
+        $end   = $start->add(new \DateInterval('PT2H'));
+
         return self::create(
             $start,
             $end

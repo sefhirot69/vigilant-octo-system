@@ -13,7 +13,7 @@ final class TransportNumberMother
     {
         return TransportNumber::fromString($value);
     }
-    
+
     public static function random(): TransportNumber
     {
         return self::create(FakerCreator::random()->buildingNumber());

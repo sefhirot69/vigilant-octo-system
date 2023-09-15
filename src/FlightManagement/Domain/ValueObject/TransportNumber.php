@@ -8,7 +8,6 @@ use App\Shared\Domain\ValueObject\StringValueObject;
 
 final class TransportNumber extends StringValueObject
 {
-
     public static function fromString(string $value): self
     {
         return new self($value);

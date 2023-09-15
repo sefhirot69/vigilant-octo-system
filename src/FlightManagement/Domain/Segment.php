@@ -7,18 +7,16 @@ namespace App\FlightManagement\Domain;
 use App\FlightManagement\Domain\ValueObject\CodeName;
 use App\FlightManagement\Domain\ValueObject\DateRange;
 use App\FlightManagement\Domain\ValueObject\TransportNumber;
-use DateTimeImmutable;
 
 final readonly class Segment
 {
     private function __construct(
-        private CodeName        $originCodeName,
-        private CodeName        $destinationCodeName,
-        private DateRange       $dateRange,
+        private CodeName $originCodeName,
+        private CodeName $destinationCodeName,
+        private DateRange $dateRange,
         private TransportNumber $transportNumber,
-        private CodeName        $companyCodeName,
-    )
-    {
+        private CodeName $companyCodeName,
+    ) {
     }
 
     public function getOriginCode(): string
@@ -41,12 +39,12 @@ final readonly class Segment
         return $this->destinationCodeName->getName();
     }
 
-    public function getStart(): DateTimeImmutable
+    public function getStart(): \DateTimeImmutable
     {
         return $this->dateRange->getStart();
     }
 
-    public function getEnd(): DateTimeImmutable
+    public function getEnd(): \DateTimeImmutable
     {
         return $this->dateRange->getEnd();
     }
@@ -67,13 +65,12 @@ final readonly class Segment
     }
 
     public static function create(
-        CodeName        $originCodeName,
-        CodeName        $destinationCodeName,
-        DateRange       $dateRange,
+        CodeName $originCodeName,
+        CodeName $destinationCodeName,
+        DateRange $dateRange,
         TransportNumber $transportNumber,
-        CodeName        $companyCodeName,
-    ): self
-    {
+        CodeName $companyCodeName,
+    ): self {
         return new self(
             $originCodeName,
             $destinationCodeName,

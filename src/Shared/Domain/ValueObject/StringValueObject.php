@@ -8,8 +8,7 @@ abstract class StringValueObject
 {
     protected function __construct(
         private readonly string $value
-    )
-    {
+    ) {
     }
 
     public function __toString(): string

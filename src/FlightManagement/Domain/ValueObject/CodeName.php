@@ -9,14 +9,13 @@ final readonly class CodeName
     protected function __construct(
         private Code $code,
         private Name $name,
-    )
-    {
+    ) {
     }
-    
+
     public static function create(
-        string  $code,
-        string  $name,
-    ) : self {
+        string $code,
+        string $name,
+    ): self {
         return new self(
             Code::fromString($code),
             Name::fromString($name),
@@ -32,5 +31,4 @@ final readonly class CodeName
     {
         return $this->name->value();
     }
-
 }

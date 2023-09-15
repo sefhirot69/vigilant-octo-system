@@ -11,20 +11,17 @@ use App\Shared\Domain\Bus\Query\QueryResponse;
 
 final class GetAvailabilityPriceQueryHandler implements QueryHandler
 {
-
     public function __construct(
         private SegmentFindRepository $segmentFindRepository,
-    )
-    {
+    ) {
     }
 
     public function __invoke(GetAvailabilityPriceQuery $query): QueryResponse
     {
-        $originCode = Code::fromString($query->getOriginCode());
+        $originCode      = Code::fromString($query->getOriginCode());
         $destinationCode = Code::fromString($query->getDestinationCode());
-        $start = $query->getStart();
+        $start           = $query->getStart();
 
         $segments = $this->segmentFindRepository->findBy($originCode, $destinationCode, $start);
-
     }
 }

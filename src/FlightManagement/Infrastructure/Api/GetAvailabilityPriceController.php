@@ -11,13 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class GetAvailabilityPriceController extends BaseController
 {
-
     public function __invoke(Request $request): Response
     {
-        //TODO refactor deserialize dto and validation
-        $originCode = $request->query->get('origin');
+        // TODO refactor deserialize dto and validation
+        $originCode      = $request->query->get('origin');
         $destinationCode = $request->query->get('destination');
-        $start = $request->query->get('date');
+        $start           = $request->query->get('date');
 
         $queryResult = $this->ask(
             GetAvailabilityPriceQuery::create(

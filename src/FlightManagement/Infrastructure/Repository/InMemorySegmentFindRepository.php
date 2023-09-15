@@ -10,10 +10,9 @@ use App\FlightManagement\Domain\ValueObject\Code;
 use App\FlightManagement\Domain\ValueObject\CodeName;
 use App\FlightManagement\Domain\ValueObject\DateRange;
 use App\FlightManagement\Domain\ValueObject\TransportNumber;
-use SimpleXMLElement;
 
 /**
- * TODO ¿todavía se siguen usando los servicios SOAP? Estamos en el 2023
+ * TODO ¿todavía se siguen usando los servicios SOAP? Estamos en el 2023.
  */
 final class InMemorySegmentFindRepository implements SegmentFindRepository
 {
@@ -25,36 +24,34 @@ final class InMemorySegmentFindRepository implements SegmentFindRepository
     }
 
     public function findBy(
-        Code               $originCode,
-        Code               $destinationCode,
+        Code $originCode,
+        Code $destinationCode,
         \DateTimeImmutable $start,
-    ): array
-    {
-
+    ): array {
         try {
-            $dataFromXml = new SimpleXMLElement($this->content);
+            $dataFromXml = new \SimpleXMLElement($this->content);
 
             $flightSegmentList = $dataFromXml->DataLists->FlightSegmentList;
 
             $result = [];
 
             foreach ($flightSegmentList->FlightSegment as $flightSegment) {
-                $originAirportCode = (string)$flightSegment->Departure->AirportCode;
-                $destinationAirportCode = (string)$flightSegment->Arrival->AirportCode;
-                $originStart = (string)$flightSegment->Departure->Date;
+                $originAirportCode      = (string) $flightSegment->Departure->AirportCode;
+                $destinationAirportCode = (string) $flightSegment->Arrival->AirportCode;
+                $originStart            = (string) $flightSegment->Departure->Date;
                 if (
                     $originAirportCode === $originCode->value() &&
                     $destinationAirportCode === $destinationCode->value() &&
                     $originStart === $start->format('Y-m-d')
                 ) {
-                    $originAirportName = (string)$flightSegment->Departure->AirportName;
-                    $destinationAirportName = (string)$flightSegment->Arrival->AirportName;
-                    $originStartTime = (string)$flightSegment->Departure->Time;
-                    $destinationEnd = (string)$flightSegment->Departure->Date;
-                    $destinationEndTime = (string)$flightSegment->Departure->Time;
-                    $transportNumber = (string)$flightSegment->Departure->Terminal->Name;
-                    $companyCode = (string)$flightSegment->OperatingCarrier->AirlineID;
-                    $companyName = (string)$flightSegment->OperatingCarrier->Name;
+                    $originAirportName      = (string) $flightSegment->Departure->AirportName;
+                    $destinationAirportName = (string) $flightSegment->Arrival->AirportName;
+                    $originStartTime        = (string) $flightSegment->Departure->Time;
+                    $destinationEnd         = (string) $flightSegment->Departure->Date;
+                    $destinationEndTime     = (string) $flightSegment->Departure->Time;
+                    $transportNumber        = (string) $flightSegment->Departure->Terminal->Name;
+                    $companyCode            = (string) $flightSegment->OperatingCarrier->AirlineID;
+                    $companyName            = (string) $flightSegment->OperatingCarrier->Name;
 
                     $result[] = Segment::create(
                         CodeName::create(
@@ -83,9 +80,10 @@ final class InMemorySegmentFindRepository implements SegmentFindRepository
                     );
                 }
             }
+
             return $result;
         } catch (\Exception $e) {
-            return []; //TODO return exception
+            return []; // TODO return exception
         }
     }
 }
