@@ -17,6 +17,11 @@ abstract class StringValueObject
         return $this->value();
     }
 
+    public function isEqualTo(self $other): bool
+    {
+        return $this->value() === $other->value();
+    }
+
     public function value(): string
     {
         return $this->value;

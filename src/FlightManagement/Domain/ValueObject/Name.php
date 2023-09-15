@@ -8,7 +8,7 @@ use App\Shared\Domain\ValueObject\StringValueObject;
 
 final class Name extends StringValueObject
 {
-    public static function fromString(string $value): StringValueObject
+    public static function fromString(string $value): Name
     {
         return new self($value);
     }
