@@ -1,0 +1,4 @@
+GetAvailabilityPrice:
+  path: /
+  controller: App\FlightManagement\Infrastructure\Api\GetAvailabilityPriceController
+  methods: [GET]

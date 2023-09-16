@@ -51,6 +51,7 @@ rebuild:
 	@echo "🔥 Rebuild container!!!"
 	$(DOCKER_COMPOSE) build --pull --force-rm --no-cache
 	make start
+	make deps
 
 # 🧪 Tests
 test: create_env_file
@@ -83,3 +84,7 @@ lint-diff:
 
 static-analysis:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+
+# Commands
+avail:
+	$(SYMFONY) lleego:avail $(origin) $(destination) $(date)

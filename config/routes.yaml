@@ -2,3 +2,8 @@ Health:
     prefix: /api/health
     resource: ../src/Health/Infrastructure/Api/routes.yaml
     trailing_slash_on_root: false
+
+FlightManagement:
+    prefix: /api/avail
+    resource: ../src/FlightManagement/Infrastructure/Api/routes.yaml
+    trailing_slash_on_root: false
