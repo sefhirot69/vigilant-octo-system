@@ -17,6 +17,8 @@ use function Lambdish\Phunctional\each;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class BaseController extends AbstractController
 {
@@ -25,6 +27,7 @@ abstract class BaseController extends AbstractController
         protected readonly CommandBusInterface $commandBus,
         protected readonly QueryBusInterface $queryBus,
         protected readonly SerializerInterface $serializer,
+        protected readonly ValidatorInterface $validator,
     ) {
         each(
             fn (int $httpCode, string $exceptionClass) => $exceptionMapping->register($exceptionClass, $httpCode),
@@ -59,6 +62,19 @@ abstract class BaseController extends AbstractController
             $class,
             'json'
         );
+    }
+
+    protected function validationRequest(Request $request, string $class): mixed
+    {
+        $objectDto = $this->deserialize($request, $class);
+
+        $validationErrors = $this->validator->validate($objectDto);
+
+        if ($validationErrors->count() > 0) {
+            throw new ValidationFailedException($objectDto::class, $validationErrors);
+        }
+
+        return $objectDto;
     }
 
     abstract protected function exceptions(): array;
