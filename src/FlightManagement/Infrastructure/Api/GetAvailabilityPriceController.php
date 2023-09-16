@@ -19,18 +19,14 @@ final class GetAvailabilityPriceController extends BaseController
         $destinationCode = $request->query->get('destination');
         $start           = $request->query->get('date');
 
-        /** @var GetAvailabilityPriceRequest $request */
-        $request = $this->deserialize(
+        /** @var GetAvailabilityPriceRequest $availabilityPriceRequest */
+        $availabilityPriceRequest = $this->deserialize(
             $request,
             GetAvailabilityPriceRequest::class,
         );
 
         $queryResult = $this->ask(
-            GetAvailabilityPriceQuery::create(
-                $originCode,
-                $destinationCode,
-                new \DateTimeImmutable($start)
-            )
+            $availabilityPriceRequest->mapToGetAvailabilityQuery()
         );
 
         return new Response();
