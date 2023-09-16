@@ -46,6 +46,10 @@ abstract class BaseController extends AbstractController
 
         if ('json' === $request->getContentTypeFormat() || !empty($request->getContent())) {
             $content = $request->getContent();
+        }elseif (!empty($request->request->all())) {
+            $content = json_encode($request->request->all(), JSON_THROW_ON_ERROR);
+        } elseif (!empty($request->query->all())) {
+            $content = json_encode($request->query->all(), JSON_THROW_ON_ERROR);
         }
 
         return $this->serializer->deserialize(

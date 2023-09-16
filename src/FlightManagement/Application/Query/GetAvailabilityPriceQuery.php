@@ -9,9 +9,9 @@ use App\Shared\Domain\Bus\Query\Query;
 final class GetAvailabilityPriceQuery implements Query
 {
     private function __construct(
-        private string $originCode,
-        private string $destinationCode,
-        private \DateTimeImmutable $start,
+        private readonly string $originCode,
+        private readonly string $destinationCode,
+        private readonly \DateTimeImmutable $start,
     ) {
     }
 

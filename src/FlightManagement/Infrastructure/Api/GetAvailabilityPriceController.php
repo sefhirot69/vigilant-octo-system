@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\FlightManagement\Infrastructure\Api;
 
 use App\FlightManagement\Application\Query\GetAvailabilityPriceQuery;
+use App\FlightManagement\Infrastructure\Api\Dto\GetAvailabilityPriceRequest;
 use App\Shared\Infrastructure\Api\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,12 @@ final class GetAvailabilityPriceController extends BaseController
         $originCode      = $request->query->get('origin');
         $destinationCode = $request->query->get('destination');
         $start           = $request->query->get('date');
+
+        /** @var GetAvailabilityPriceRequest $request */
+        $request = $this->deserialize(
+            $request,
+            GetAvailabilityPriceRequest::class,
+        );
 
         $queryResult = $this->ask(
             GetAvailabilityPriceQuery::create(
