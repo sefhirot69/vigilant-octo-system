@@ -11,10 +11,12 @@ use App\Shared\Domain\Bus\Query\Query;
 use App\Shared\Domain\Bus\Query\QueryBusInterface;
 use App\Shared\Domain\Bus\Query\QueryResponse;
 use App\Shared\Infrastructure\Exceptions\SymfonyExceptionsHttpStatusCodeMapping;
+
+use function Lambdish\Phunctional\each;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
-use function Lambdish\Phunctional\each;
 
 abstract class BaseController extends AbstractController
 {
@@ -46,7 +48,7 @@ abstract class BaseController extends AbstractController
 
         if ('json' === $request->getContentTypeFormat() || !empty($request->getContent())) {
             $content = $request->getContent();
-        }elseif (!empty($request->request->all())) {
+        } elseif (!empty($request->request->all())) {
             $content = json_encode($request->request->all(), JSON_THROW_ON_ERROR);
         } elseif (!empty($request->query->all())) {
             $content = json_encode($request->query->all(), JSON_THROW_ON_ERROR);

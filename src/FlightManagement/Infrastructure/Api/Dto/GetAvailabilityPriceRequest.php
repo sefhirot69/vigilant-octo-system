@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\FlightManagement\Infrastructure\Api\Dto;
 
 use App\FlightManagement\Application\Query\GetAvailabilityPriceQuery;
-use Symfony\Component\Serializer\Annotation\SerializedName;
 
 final class GetAvailabilityPriceRequest
 {

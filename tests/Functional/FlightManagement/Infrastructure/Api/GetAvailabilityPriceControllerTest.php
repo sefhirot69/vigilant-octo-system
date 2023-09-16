@@ -23,11 +23,15 @@ final class GetAvailabilityPriceControllerTest extends WebTestCase
 
         // WHEN
 
-        $this->client
-            ->request(
-                'GET',
-                'api/avail',
-            );
+        $this->client->request(
+            'GET',
+            'api/avail',
+            [
+                'origin'      => 'MAD',
+                'destination' => 'BIO',
+                'date'        => '2022-06-01',
+            ]
+        );
 
         $response = $this->client->getResponse();
 
