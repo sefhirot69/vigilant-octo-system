@@ -22,7 +22,7 @@ final class InMemorySegmentFindRepository implements SegmentFindRepository
     {
         $content = file_get_contents('/var/www/html/src/FlightManagement/Infrastructure/Stub/data.xml');
 
-        if ($content !== false) {
+        if (false !== $content) {
             $this->content = $content;
         } else {
             throw new \RuntimeException('It was not possible to read the XML file');
@@ -89,7 +89,7 @@ final class InMemorySegmentFindRepository implements SegmentFindRepository
 
             return $result;
         } catch (\Exception $e) {
-            return []; // TODO return exception
+            throw new \RuntimeException($e->getMessage());
         }
     }
 }
