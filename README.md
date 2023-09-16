@@ -3,11 +3,6 @@
 [![CI](https://github.com/sefhirot69/template-symfony/actions/workflows/build.yml/badge.svg)](https://github.com/sefhirot69/template-symfony/actions/workflows/build.yml)
 --------------------------------------
 
-# 🚀 Template Symfony
-
-Este es un template para Symfony 6 en php 8.2, con algunas configuraciones ya predefinidas. Para empezar a desarrollar tu propia
-API o microservicio.
-
 ## 🛠️ Requisitos
 
 - 🐳 Docker
@@ -20,7 +15,7 @@ API o microservicio.
 1. Clona el repositorio o haz un fork
 2. Escribe por terminal el comando `make`. Este comando instalara todo lo necesario para arrancar la aplicación.
 3. El api está disponible en la url http://localhost:41
-   4. Tienes un endpoint para verificar si la aplicación funciona http://localhost:41/api/healthcheck
+   4. Tienes un endpoint para verificar si la aplicación funciona http://localhost:41/api/health
 
 ```Puedes cambiar el puerto de salida 41, en el fichero docker-compose por el que más te guste.```
 
@@ -37,20 +32,14 @@ Este proyecto incluye un Makefile con algunos comandos útiles para el desarroll
 * `make recreate`: Reinicia los contenedores de Docker Compose.
 * `make rebuild`: Reconstruye los contenedores de Docker Compose.
 
-### Comandos de Composer
+## Aplicación
 
-* `make deps`: Instala las dependencias del proyecto.
-* `make update-deps`: Actualiza las dependencias del proyecto.
-* `make clear`: Limpia la caché de Symfony.
-* `make bash`: Abre una sesión de terminal en el contenedor de Docker.
+Tenemos disponibles dos opciones para comprobar la disponibilidad de precios:
 
-### Otros comandos
+* Por endpoint http://localhost:41/api/avail?origin=MAD&destination=BIO&date=2022-06-01
+* Por comando `make avail origin=string destination=string date=string`
 
-* `make test`: Ejecuta los tests del proyecto.
-* `make lint`: Verifica el cumplimiento de los estándares de codificación.
-* `make style`: Corrige los problemas de formato de código.
-* `make static-analysis`: Verifica la calidad del código fuente.
-
+Ejemplo de uso: ```make avail origin=MAD destination=BIO date=2023-06-01```
 
 📝 Recuerda que puedes consultar los detalles de cada comando en el Makefile del proyecto.
 
