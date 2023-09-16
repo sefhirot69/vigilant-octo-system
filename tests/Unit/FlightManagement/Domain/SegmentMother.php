@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Tests\Unit\FlightManagement\Domain;
+
 use App\FlightManagement\Domain\Segment;
 use App\FlightManagement\Domain\ValueObject\CodeName;
 use App\FlightManagement\Domain\ValueObject\DateRange;

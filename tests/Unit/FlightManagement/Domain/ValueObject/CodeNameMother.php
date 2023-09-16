@@ -12,7 +12,7 @@ final class CodeNameMother
 {
     public static function create(Code $code, Name $name): CodeName
     {
-        return CodeName::create($code, $name);
+        return CodeName::create($code->value(), $name->value());
     }
 
     public static function random(): CodeName
