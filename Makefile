@@ -83,3 +83,7 @@ lint-diff:
 
 static-analysis:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+
+# Commands
+avail:
+	$(SYMFONY) lleego:avail $(origin) $(destination) $(date)
