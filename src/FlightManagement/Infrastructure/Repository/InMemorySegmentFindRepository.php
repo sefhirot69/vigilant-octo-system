@@ -53,8 +53,8 @@ final class InMemorySegmentFindRepository implements SegmentFindRepository
                     $originAirportName      = (string) $flightSegment->Departure->AirportName;
                     $destinationAirportName = (string) $flightSegment->Arrival->AirportName;
                     $originStartTime        = (string) $flightSegment->Departure->Time;
-                    $destinationEnd         = (string) $flightSegment->Departure->Date;
-                    $destinationEndTime     = (string) $flightSegment->Departure->Time;
+                    $destinationEnd         = (string) $flightSegment->Arrival->Date;
+                    $destinationEndTime     = (string) $flightSegment->Arrival->Time;
                     $transportNumber        = (string) $flightSegment->Departure->Terminal->Name;
                     $companyCode            = (string) $flightSegment->OperatingCarrier->AirlineID;
                     $companyName            = (string) $flightSegment->OperatingCarrier->Name;
