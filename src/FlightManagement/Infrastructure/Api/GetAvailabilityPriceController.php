@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\FlightManagement\Infrastructure\Api;
 
-use App\Controller\Shared\BaseController;
 use App\FlightManagement\Application\Query\GetAvailabilityPriceQuery;
+use App\Shared\Infrastructure\Api\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
