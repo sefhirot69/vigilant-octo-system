@@ -20,7 +20,13 @@ final class InMemorySegmentFindRepository implements SegmentFindRepository
 
     public function __construct()
     {
-        $this->content = file_get_contents('/var/www/html/src/FlightManagement/Infrastructure/Stub/data.xml');
+        $content = file_get_contents('/var/www/html/src/FlightManagement/Infrastructure/Stub/data.xml');
+
+        if ($content !== false) {
+            $this->content = $content;
+        } else {
+            throw new \RuntimeException('It was not possible to read the XML file');
+        }
     }
 
     public function findBy(

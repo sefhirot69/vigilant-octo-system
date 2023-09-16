@@ -8,6 +8,7 @@ use App\FlightManagement\Application\Query\Response\GetAvailabilityPriceCollecti
 use App\FlightManagement\Infrastructure\Api\Dto\GetAvailabilityPriceRequest;
 use App\Shared\Domain\Exceptions\NotFoundException;
 use App\Shared\Infrastructure\Api\BaseController;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +37,7 @@ final class GetAvailabilityPriceController extends BaseController
     {
         return [
             NotFoundException::class => Response::HTTP_NOT_FOUND,
+            RuntimeException::class => Response::HTTP_INTERNAL_SERVER_ERROR,
         ];
     }
 }
